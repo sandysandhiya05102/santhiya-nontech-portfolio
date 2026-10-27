@@ -103,3 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
         container.appendChild(bubble);
     }
 });
+
+// Mobile hamburger menu
+const menuToggle = document.getElementById("menu-toggle");
+const navMenu = document.getElementById("nav-menu");
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+        const isOpen = navMenu.classList.toggle("active");
+        menuToggle.textContent = isOpen ? "✕" : "☰";
+        menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    navMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("active");
+            menuToggle.textContent = "☰";
+            menuToggle.setAttribute("aria-expanded", "false");
+        });
+    });
+}
